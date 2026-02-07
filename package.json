@@ -2,18 +2,26 @@
   "name": "dormero-viktoria",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "tsx scripts/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "echo \"(placeholder) add tests in PR2\" && exit 0"
+    "test": "echo \"(placeholder) add tests in PR2\" && exit 0",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.2",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -26,7 +34,9 @@
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "prisma": "^6.19.2",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

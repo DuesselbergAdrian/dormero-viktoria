@@ -1,0 +1,23 @@
+hotel:
+  slug: dormero-coburg
+  name: "DORMERO Hotel Coburg"
+  city: "Coburg"
+  sourceUrl: "https://example.com/hotels/dormero-coburg"
+
+documents:
+  - type: amenities
+    title: "Demo Facts: Amenities"
+    sourceUrl: "https://example.com/hotels/dormero-coburg/amenities"
+    tags: ["amenities", "demo"]
+    chunks:
+      - "This is demo content. Replace with curated facts from official sources (hotel website, booking page, PDFs)."
+      - "Add key guest questions: parking, breakfast, check-in/out, pets, gym, wifi."
+
+  - type: parking
+    title: "Demo Facts: Parking"
+    sourceUrl: "https://example.com/hotels/dormero-coburg/parking"
+    tags: ["parking", "arrival", "demo"]
+    chunks:
+      - "Parking information is not yet curated. If asked, the agent should not guess and should offer escalation."
+
+# Note: We’re using example.com placeholders for now. In PR2/PR7 we’ll replace with real sources + a sources.md. But schema + ingestion is correct.

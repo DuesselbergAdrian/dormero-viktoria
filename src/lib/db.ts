@@ -1,14 +1,14 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 export const db =
   globalForPrisma.prisma ??
   new PrismaClient({
-    log: ["error", "warn"],
+    log: ['error', 'warn'],
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
 
 // Backwards-compatible alias (in case already imported `prisma` elsewhere) -> Debugged
 export const prisma = db;

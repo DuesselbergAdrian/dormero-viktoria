@@ -1,5 +1,5 @@
-import { db } from "@/lib/db";
-import { rankDocuments, type RankableDoc } from "./rank";
+import { db } from '@/lib/db';
+import { rankDocuments, type RankableDoc } from './rank';
 
 export type Snippet = {
   title: string;

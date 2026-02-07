@@ -1,7 +1,7 @@
-import type { Snippet } from "./search";
+import type { Snippet } from './search';
 
 export const FALLBACK_TEXT =
-  "Dazu habe ich gerade keine verlässlichen Infos. Soll ich dich mit dem Team verbinden?";
+  'Dazu habe ich gerade keine verlässlichen Infos. Soll ich dich mit dem Team verbinden?';
 
 export type FormattedRetrieval = {
   answerDraft: string;
@@ -10,9 +10,9 @@ export type FormattedRetrieval = {
 };
 
 function clip(text: string, max = 240): string {
-  const t = text.replace(/\s+/g, " ").trim();
+  const t = text.replace(/\s+/g, ' ').trim();
   if (t.length <= max) return t;
-  return t.slice(0, max - 1).trimEnd() + "…";
+  return t.slice(0, max - 1).trimEnd() + '…';
 }
 
 export function formatRetrieval(params: {
@@ -41,9 +41,9 @@ export function formatRetrieval(params: {
   const s2 = top
     ? `Relevant ist vor allem: “${clip(top.text, 180)}”`
     : `Ich habe passende Informationen gefunden.`;
-  const s3 = second ? `Zusätzlich gibt es Hinweise in “${second.title}”.` : "";
+  const s3 = second ? `Zusätzlich gibt es Hinweise in “${second.title}”.` : '';
 
-  const draft = [s1, s2, s3].filter(Boolean).join(" ");
+  const draft = [s1, s2, s3].filter(Boolean).join(' ');
 
   return {
     answerDraft: draft,

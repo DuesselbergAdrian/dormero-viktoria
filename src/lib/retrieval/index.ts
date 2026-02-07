@@ -1,7 +1,7 @@
-import { inferHotelSlugFromQuery } from "@/lib/hotelMatch";
-import { SearchDocumentsInputSchema } from "@/lib/validators";
-import { searchDocuments } from "./search";
-import { formatRetrieval } from "./format";
+import { inferHotelSlugFromQuery } from '@/lib/hotelMatch';
+import { SearchDocumentsInputSchema } from '@/lib/validators';
+import { searchDocuments } from './search';
+import { formatRetrieval } from './format';
 
 export async function retrieveAnswer(input: { query: string; hotelSlug?: string }) {
   const parsed = SearchDocumentsInputSchema.parse(input);
@@ -17,6 +17,5 @@ export async function retrieveAnswer(input: { query: string; hotelSlug?: string 
   return formatRetrieval({
     snippets,
     confidence,
-    });
-
+  });
 }

@@ -16,3 +16,4 @@ npm run db:migrate -- --name init
 npm run db:seed
 npm run db:studio
 ``
+```

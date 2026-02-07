@@ -13,41 +13,41 @@ export type RankedDoc = RankableDoc & {
 };
 
 const STOPWORDS = new Set([
-  "der",
-  "die",
-  "das",
-  "und",
-  "oder",
-  "ein",
-  "eine",
-  "einer",
-  "eines",
-  "im",
-  "in",
-  "am",
-  "an",
-  "auf",
-  "zu",
-  "zum",
-  "zur",
-  "mit",
-  "von",
-  "für",
-  "the",
-  "and",
-  "or",
-  "a",
-  "an",
-  "to",
-  "of",
-  "is",
-  "are",
+  'der',
+  'die',
+  'das',
+  'und',
+  'oder',
+  'ein',
+  'eine',
+  'einer',
+  'eines',
+  'im',
+  'in',
+  'am',
+  'an',
+  'auf',
+  'zu',
+  'zum',
+  'zur',
+  'mit',
+  'von',
+  'für',
+  'the',
+  'and',
+  'or',
+  'a',
+  'an',
+  'to',
+  'of',
+  'is',
+  'are',
 ]);
 
 export function tokenize(input: string): string[] {
   return input
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
     .split(/\s+/)
     .map((t) => t.trim())
     .filter((t) => t.length >= 2)
@@ -105,7 +105,7 @@ export function rankDocuments(params: {
         queryTokens,
         doc,
         preferredHotelSlug: params.preferredHotelSlug,
-      })
+      }),
     )
     .sort((a, b) => b.score - a.score);
 

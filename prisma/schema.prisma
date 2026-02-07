@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Hotel {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  name      String
+  city      String?
+  sourceUrl String?
+
+  documents Document[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  hotelId   String?
+  hotel     Hotel?   @relation(fields: [hotelId], references: [id], onDelete: SetNull)
+
+  // e.g. "policy", "faq", "amenities", "parking"
+  type      String
+  title     String
+  sourceUrl String
+
+  // a "chunk" of text we can retrieve
+  chunkText String
+
+  // simple tags for boosting/filtering (comma-separated for now)
+  tags      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([hotelId])
+  @@index([type])
+}
+
+model Call {
+  id        String   @id @default(cuid())
+  startedAt DateTime @default(now())
+  hotelSlug String?
+  status    String   @default("active")
+
+  messages        CallMessage[]
+  toolInvocations ToolInvocation[]
+  feedback        Feedback?
+
+  @@index([startedAt])
+  @@index([hotelSlug])
+}
+
+model CallMessage {
+  id     String   @id @default(cuid())
+  callId String
+  call   Call     @relation(fields: [callId], references: [id], onDelete: Cascade)
+
+  // "user" | "assistant" | "system" etc.
+  role   String
+  text   String
+  ts     DateTime @default(now())
+
+  @@index([callId])
+  @@index([ts])
+}
+
+model ToolInvocation {
+  id          String   @id @default(cuid())
+  callId      String
+  call        Call     @relation(fields: [callId], references: [id], onDelete: Cascade)
+
+  query       String
+  // store top snippets returned by retrieval + debug metadata
+  resultsJson String
+  confidence  Float
+  ts          DateTime @default(now())
+
+  @@index([callId])
+  @@index([ts])
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  callId    String   @unique
+  call      Call     @relation(fields: [callId], references: [id], onDelete: Cascade)
+
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,9 @@
+- type: policy
+  title: "Demo Policy: Grounded Answers"
+  sourceUrl: "https://example.com/policies/grounding"
+  tags: ["policy", "grounding", "demo"]
+  chunks:
+    - "All factual answers must be grounded in stored sources. If confidence is low, say you don’t know and offer escalation."
+    - "Keep answers short (2–3 sentences) and include citations (title + URL)."
+
+# Note: We’re using example.com placeholders for now. In PR2/PR7 we’ll replace with real sources + a sources.md. But schema + ingestion is correct.

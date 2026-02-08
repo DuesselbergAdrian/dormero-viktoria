@@ -14,3 +14,12 @@ export const AgentSearchInputSchema = z.object({
 });
 
 export type AgentSearchInput = z.infer<typeof AgentSearchInputSchema>;
+
+export const CallIdParamSchema = z.object({
+  id: z.string().min(1),
+});
+
+export const FeedbackInputSchema = z.object({
+  rating: z.number().int().min(1).max(5),
+  comment: z.string().trim().min(1).max(2000).optional(),
+});

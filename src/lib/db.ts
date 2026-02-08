@@ -1,14 +1,18 @@
-import { PrismaClient } from '@prisma/client';
+// src/lib/db.ts
+import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
 
 export const db =
-  globalForPrisma.prisma ??
+  globalThis.prisma ??
   new PrismaClient({
-    log: ['error', 'warn'],
+    log: ["error", "warn"],
   });
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
+if (process.env.NODE_ENV !== "production") globalThis.prisma = db;
 
-// Backwards-compatible alias (in case already imported `prisma` elsewhere) -> Debugged
+// Backwards-compatible alias
 export const prisma = db;

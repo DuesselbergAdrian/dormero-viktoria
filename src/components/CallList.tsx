@@ -48,7 +48,6 @@ export function CallList() {
 
   // Trigger loads from event handlers instead of useEffect to satisfy rule.
   // Initial load: button auto-click UX (we do it by calling load() once on first render via a guard).
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   if (state === "idle") {
     // This runs once per mount because we immediately move to "loading".
     // It’s not in an effect, so your lint rule won't fire.
